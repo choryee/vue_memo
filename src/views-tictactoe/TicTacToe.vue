@@ -21,13 +21,14 @@ export default {
         turn : 'o',
       }
   },
-  methods:{
-    turnChange(cellData, rowIndex, cellIndex, turn){
-      let emitData =  this.$emit('turn-change', cellData, rowIndex, cellIndex);
+  methods: {
+    turnChange(cellData, rowIndex, cellIndex, turn) {
+      // let emitData =  this.$emit('turn-change', cellData, rowIndex, cellIndex);
       let tableLength = this.tableData.length;
+      console.log('tic turn>>>', turn);
 
-      this.tableData[rowIndex].forEach( oneRow=>{
-      let tableCell = this.tableData[rowIndex][cellIndex];
+      this.tableData[rowIndex].forEach(oneRow => {
+        let tableCell = this.tableData[rowIndex][cellIndex];
 
         // if(cellData === 'o'){
         //   console.log('o >>>', );
@@ -38,13 +39,30 @@ export default {
         //   this.tableData[rowIndex][cellIndex]='o';
         // }
 
-        cellData === 'o' ? this.tableData[rowIndex][cellIndex] = 'x' : this.tableData[rowIndex][cellIndex] ='o';
-        this.turn='x';
-
-
+        cellData === 'o' ? this.tableData[rowIndex][cellIndex] = 'x' : this.tableData[rowIndex][cellIndex] = 'o';
+        this.turn = turn === 'o' ? 'x' : 'o';
+        this.calOx(cellData, rowIndex, cellIndex, turn);
       })
+    },
+    calOx(cellData, rowIndex, cellIndex, turn) {
+      if (this.turn === 'o'){
+        let index=0;
+        for(let i=0; i<index; i++){
+          let cellSet=new Set();
+          for(let j=0; j<3, j++){
+            cellSet.add(this.tableData[i][i]);
+            cellSet.forEach(cell=>{
+              cell===cell;
+            })
+          }//j
+
+        }// i
+      }
     }
-  }
+
+  },
+
+
 }
 </script>
 

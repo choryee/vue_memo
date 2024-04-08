@@ -26,7 +26,8 @@ export default {
       console.log('  this.$parent.$data>>>', this.$parent.$data )
       //this.$root.$data.turn = this.$root.$data.turn === 'o' ? 'x' :'o';
 
-      this.$emit('turn-change', cellData, rowIndex, cellIndex, turn);
+      let newTurn = this.turn==='o' ? 'x':'o';
+      this.$emit('turn-change', cellData, rowIndex, cellIndex, newTurn);
 
     }
   }
