@@ -35,6 +35,11 @@ const router = createRouter({
       name: 'ticktacktoe',
       component: () => import('../views-tictactoe/TicTacToe.vue')
     },
+    {
+      path: '/calendar',
+      name: 'calendar',
+      component: () => import('../views/calendar.vue')
+    },
   ]
 })
 
