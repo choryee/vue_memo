@@ -2,7 +2,7 @@
   <table>
     <tr-component v-for="(rowData, index) in tableData"  :key="index" :row-data="rowData" :row-index="index"
                   :turn-data="turn"  @turn-change="turnChange">  </tr-component>
-  {{tableData}}
+<!--  {{tableData}}-->
   </table>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid px-4">
+  <div class="container-fluid px-4" id="calendar">
     <h1 class="mt-4">캘린더 calendar.vue </h1>
     <FullCalendar :options="calendarOptions"/>
   </div>
@@ -56,5 +56,8 @@ export default {
 <style>
 .custom-calendar {
   height: 600px;
+}
+#calendar{
+  height: 500px;
 }
 </style>

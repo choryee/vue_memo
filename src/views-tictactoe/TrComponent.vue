@@ -3,7 +3,7 @@
     <td-component v-for="(cellData, index) in rowData" :key="index" :cell-data="cellData" :row-index="rowIndex" :cell-index="index"
                   :turn-data="turn" @turn-change="turnChange"
     >  </td-component>
-    {{rowData}}
+<!--    {{rowData}}-->
   </tr>
 
 
