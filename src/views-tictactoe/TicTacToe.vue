@@ -14,9 +14,12 @@ export default {
   data(){
       return {
         tableData : [
-            ['o','x','o'],
-            ['x','x','o'],
-            ['o','o','x'],
+            // ['o','x','o'],
+            // ['x','x','o'],
+            // ['o','o','x'],
+          ['','',''],
+          ['','',''],
+          ['','',''],
       ],
         turn : 'o',
       }
@@ -41,23 +44,30 @@ export default {
 
         cellData === 'o' ? this.tableData[rowIndex][cellIndex] = 'x' : this.tableData[rowIndex][cellIndex] = 'o';
         this.turn = turn === 'o' ? 'x' : 'o';
-        this.calOx(cellData, rowIndex, cellIndex, turn);
+        this.calOX(cellData, rowIndex, cellIndex, turn);
+        this.markingOX(cellData, rowIndex, cellIndex, turn);
       })
     },
-    calOx(cellData, rowIndex, cellIndex, turn) {
-      if (this.turn === 'o'){
-        let index=0;
-        for(let i=0; i<index; i++){
-          let cellSet=new Set();
-          for(let j=0; j<3, j++){
-            cellSet.add(this.tableData[i][i]);
-            cellSet.forEach(cell=>{
-              cell===cell;
-            })
-          }//j
 
-        }// i
+    calOX(cellData, rowIndex, cellIndex, turn) {
+      if (this.turn === 'o' || this.turn === 'x') {
+        for (let i = 0; i < 3; i++) {
+          let cellSet = new Set();
+          for (let j = 0; j < 3; j++) {
+            cellSet.add(this.tableData[i][j]);
+          } // j
+
+            // Set의 크기가 1이면 모든 값이 같다는 뜻입니다.
+          if (cellSet.size === 1) {
+            console.log('All matched. >>>', );
+            break; // 여기서 중복된 값을 찾았으므로 더 이상 반복할 필요가 없습니다.
+          }
+          //alert('all matched.');
+        } // i
       }
+    },
+    markingOX(cellData, rowIndex, cellIndex, turn){
+      this.turn === 'o' ? this.tableData[rowIndex][cellIndex] = 'o' : 'x';
     }
 
   },
