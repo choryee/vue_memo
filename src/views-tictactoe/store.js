@@ -14,7 +14,7 @@ export default createStore({
         tableData : [
             ['','',''],
             ['','',''],
-            ['','','o'],
+            ['','',''],
         ],
         turn : 'o',
         winner: ''
@@ -31,13 +31,16 @@ export default createStore({
         // [CHANGE_TURN](state){
         //     state.turn= state.turn ==='o' ? 'x' :'o';
         // }
-        click_cell(state, row, cell  ){
+        click_cell(state, {row, cell}  ){
             console.log('state is',state ,'click_cell mutation called with row:', row, 'and cell:', cell);
-            state.tableData[2][2] = 'o';
-            //state.tableData[row][cell] = state.turn;
+            //state.tableData[2][2] = 'o';
+            console.log(' state.turn>>>', state.turn);
+            state.tableData[row][cell] = state.turn;
+            state.turn = state.turn === 'o' ? 'x' : 'o';
+            console.log(' state.turn 11 >>>', state.turn);
         }
     },
-    getters:{// state를 수정할때 사용. 동기적으로
+    getters:{// state를 수정할 때 사용. 동기적으로
 
     },
     actions:{//비동기를 사용할때. 여러 뮤테이션을 연달아 사용할때.

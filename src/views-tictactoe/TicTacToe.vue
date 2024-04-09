@@ -3,7 +3,8 @@
     <div>
       <h6>{{turn}}님의 턴입니다.</h6>
     </div>
-    <table-component :table-data="tableData" :turn-data="turn" @turn-change="turnChange"/>
+    <table-component
+        :table-data="tableData" :turn-data="turn" @turn-change="turnChange"/>
     <div v-if="winner">{{winner}}님의 승리!!</div>
   </div>
 
@@ -11,22 +12,35 @@
 
 <script>
 import TableComponent from './TableComponent.vue' ;
+import store from './store.js'
+import {mapState} from "vuex";
 
 export default {
+  store,
   components:{TableComponent},
   data(){
       return {
-        tableData : [
-            // ['o','x','o'],
-            // ['x','x','o'],
-            // ['o','o','x'],
-          ['','',''],
-          ['','',''],
-          ['','',''],
-      ],
-        turn : 'o',
-        winner: ''
+      //   tableData : [
+      //       // ['o','x','o'],
+      //       // ['x','x','o'],
+      //       // ['o','o','x'],
+      //     ['','',''],
+      //     ['','',''],
+      //     ['','',''],
+      // ],
+      //   turn : 'o',
+      //   winner: ''
       }
+  },
+  computed:{
+    //import store from './store.js'
+    //import {mapState} from "vuex";
+    //위 둘 임포트하고, state.js에 정의된 state의 객체를 사용가능. 240409
+    ...mapState(['tableData','winner']),
+    //원래는 밑처럼인데, 위처럼 ...mapState로 한방에도 된다.
+    turn(){
+      return this.$store.state.turn;
+    }
   },
   methods: {
     turnChange(cellData, rowIndex, cellIndex, turn) {
@@ -35,7 +49,7 @@ export default {
       console.log('tic turn>>>', turn);
       console.log('tic cellIndex>>>', cellIndex);
 
-      //this.tableData[rowIndex].forEach(oneRow => {
+     // this.tableData[rowIndex].forEach(oneRow => {
        // let tableCell = this.tableData[rowIndex][cellIndex];
 
         // if(cellData === 'o'){
@@ -51,7 +65,7 @@ export default {
 
         //this.calOX(cellData, rowIndex, cellIndex, turn);
         this.markingOX(cellData, rowIndex, cellIndex, turn);
-     // }) //forEach
+     //}) //forEach
     },
 
     calOX(cellData, rowIndex, cellIndex, turn) {
@@ -75,14 +89,12 @@ export default {
       // this.$set.tableData 7-3강, 08'19 <--이차원배열을 인덱스로 직접 바뀌면, vue가 인식 못함.
      // this.turn === 'o' ? this.tableData[rowIndex][cellIndex] = 'o' : 'x';
      // this.tableData[rowIndex][cellIndex] = this.turn;
-      console.log('markingOX cellIndex>>>', cellIndex);
-      this.$store.commit('click_cell', rowIndex, cellIndex);
-      //this.turn = this.turn === 'o' ? 'x' : 'o';
+
+      //this.$store.commit('click_cell', rowIndex, cellIndex); //이거 안 됨.
+      this.$store.commit('click_cell', {row:rowIndex, cell:cellIndex});
+
     }
-
   },
-
-
 }
 </script>
 
@@ -91,7 +103,7 @@ table{
   border-collapse: collapse;
 }
 td{
-  border: 1px solid white;
+  border: 1px solid blue;
   width: 50px   ;
   height: 50px;
   text-align: center;
