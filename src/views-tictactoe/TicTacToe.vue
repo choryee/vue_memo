@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <h2>      {{turn}}님의 턴입니다.</h2>
+      <h6>{{turn}}님의 턴입니다.</h6>
     </div>
     <table-component :table-data="tableData" :turn-data="turn" @turn-change="turnChange"/>
     <div v-if="winner">{{winner}}님의 승리!!</div>
@@ -31,10 +31,11 @@ export default {
   methods: {
     turnChange(cellData, rowIndex, cellIndex, turn) {
       // let emitData =  this.$emit('turn-change', cellData, rowIndex, cellIndex);
-      let tableLength = this.tableData.length;
+      //let tableLength = this.tableData.length;
       console.log('tic turn>>>', turn);
+      console.log('tic cellIndex>>>', cellIndex);
 
-      this.tableData[rowIndex].forEach(oneRow => {
+      //this.tableData[rowIndex].forEach(oneRow => {
        // let tableCell = this.tableData[rowIndex][cellIndex];
 
         // if(cellData === 'o'){
@@ -50,7 +51,7 @@ export default {
 
         //this.calOX(cellData, rowIndex, cellIndex, turn);
         this.markingOX(cellData, rowIndex, cellIndex, turn);
-      }) //forEach
+     // }) //forEach
     },
 
     calOX(cellData, rowIndex, cellIndex, turn) {
@@ -73,8 +74,10 @@ export default {
     markingOX(cellData, rowIndex, cellIndex, turn){
       // this.$set.tableData 7-3강, 08'19 <--이차원배열을 인덱스로 직접 바뀌면, vue가 인식 못함.
      // this.turn === 'o' ? this.tableData[rowIndex][cellIndex] = 'o' : 'x';
-      this.tableData[rowIndex][cellIndex] = this.turn;
-      this.turn = this.turn === 'o' ? 'x' : 'o';
+     // this.tableData[rowIndex][cellIndex] = this.turn;
+      console.log('markingOX cellIndex>>>', cellIndex);
+      this.$store.commit('click_cell', rowIndex, cellIndex);
+      //this.turn = this.turn === 'o' ? 'x' : 'o';
     }
 
   },
