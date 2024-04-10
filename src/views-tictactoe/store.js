@@ -10,7 +10,7 @@ export const CHANGE_TURN='CHANGE_TURN';
 
 
 export default createStore({
-    state :{ // vue의 data와 비슷
+    state : { // vue의 data와 비슷
         tableData : [
             ['','',''],
             ['','',''],
@@ -20,7 +20,7 @@ export default createStore({
         winner: ''
 
     },
-    mutations:{ // vue의 computed와 비슷. data나 state를 바꿀때는 mutations으로 바꾸어야.
+    mutations:{ //  state안의 데이터들을 바꿀때는 mutations으로 바꾸어야.
         // [SET_WINNER](state, winner){
         //     state.winner=winner;
         // },
@@ -40,8 +40,10 @@ export default createStore({
             console.log(' state.turn 11 >>>', state.turn);
         }
     },
-    getters:{// state를 수정할 때 사용. 동기적으로
-
+    getters:{// vue의 computed와 비슷. state을 이용해 추가적으로 더 작업 때 사용. 동기적으로. 7-9깅,07'21
+        turnMessage(state){
+            return state.turn+'님이 승리했습니다.';
+        }
     },
     actions:{//비동기를 사용할때. 여러 뮤테이션을 연달아 사용할때.
 

@@ -16,7 +16,7 @@ import store from './store.js'
 import {mapState} from "vuex";
 
 export default {
-  store,
+  store, // 이거해야, this.$store. 사용가능.
   components:{TableComponent},
   data(){
       return {
@@ -37,6 +37,7 @@ export default {
     //import {mapState} from "vuex";
     //위 둘 임포트하고, state.js에 정의된 state의 객체를 사용가능. 240409
     ...mapState(['tableData','winner']),
+    // 이 화면에서 vuex을 쓸려서, computed에 ...mapState사용해야 하고, 그러면 밑에서 this. 사용이 가능.
     //원래는 밑처럼인데, 위처럼 ...mapState로 한방에도 된다.
     turn(){
       return this.$store.state.turn;
@@ -91,7 +92,7 @@ export default {
      // this.tableData[rowIndex][cellIndex] = this.turn;
 
       //this.$store.commit('click_cell', rowIndex, cellIndex); //이거 안 됨.
-      this.$store.commit('click_cell', {row:rowIndex, cell:cellIndex});
+      this.$store.commit('click_cell', {row:rowIndex, cell:cellIndex}); // 이렇게 객체로 넣야야 하는 듯.
 
     }
   },
