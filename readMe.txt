@@ -1,11 +1,13 @@
 
-store.js를 사용할때 마다, main.ts의 import store from './views-landMine/storeMine'
-부분을 변경해야.
+
 
 
 landmine 8-6강, 10'00까지만 들음.
 그 이후 들어야(어려움.)
 
+store.js를 사용할때 마다, main.ts의 import store from './views-landMine/storeMine'
+부분을 변경해야.
+------
 
 TodList만들기. 240406
 원쌤의 Vue.js스타트 책. p.209.  구조 나온 그림을 보라.
@@ -32,6 +34,8 @@ npm run dev
 
 
 ------------
+TodoApp
+
 사용한 문법.
 props
  props : ['listTodo'], //이거 자식에서 받을때. 밑에 data()에 다시 받을 필요없이, 위 템플렛에 바로 사용가능.
@@ -41,8 +45,6 @@ $emit
 
 <span :class="{ 'middle-line': item.completed }">{{ item.todo }}</span>
 -> item.completed이게 참이면, .class='middle-line'가 생겼다 안 생겼다 동적으로 클래스-바인딩 됨.
-
-
 
 <template>
   <div id="app" class="container">
@@ -151,7 +153,7 @@ Vue.js에서는 데이터 바인딩을 통해 상태를 변경하고 이에 따�
 
 `:class="{ 'middle-line': item.completed }"`은 Vue.js에서 클래스를 동적으로 바인딩하는 방법입니다.
 
-이 구문은 `item.completed`가 `true`일 때만 해당 요소에 `middle-line`이라는 클래스를 추가합니다. 즉, `item.completed`가 참이면 해당 요소에 `middle-line` 클래스가 적용되어 중간에 줄이 그어지게 됩니다.
+이 구문은 `item.completed`가 `true`일 때만, 해당 요소에 `middle-line`이라는 클래스를 추가합니다. 즉, `item.completed`가 참이면 해당 요소에 `middle-line` 클래스가 적용되어 중간에 줄이 그어지게 됩니다.
 
 이것은 조건부 클래스 바인딩을 가능하게 하며, 상태에 따라 요소의 스타일을 동적으로 변경할 수 있습니다.
 
