@@ -40,6 +40,11 @@ const router = createRouter({
       name: 'calendar',
       component: () => import('../views/calendar.vue')
     },
+    {
+      path: '/mine',
+      name: 'mine',
+      component: () => import('../views-landMine/MineSweeper.vue')
+    },
   ]
 })
 

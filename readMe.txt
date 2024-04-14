@@ -1,4 +1,12 @@
 
+store.js를 사용할때 마다, main.ts의 import store from './views-landMine/storeMine'
+부분을 변경해야.
+
+
+landmine 8-6강, 10'00까지만 들음.
+그 이후 들어야(어려움.)
+
+
 TodList만들기. 240406
 원쌤의 Vue.js스타트 책. p.209.  구조 나온 그림을 보라.
 

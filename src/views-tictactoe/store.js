@@ -17,7 +17,7 @@ export default createStore({
             ['','',''],
         ],
         turn : 'o',
-        winner: ''
+        winner: 'winner is test...'
 
     },
     mutations:{ //  state안의 데이터들을 바꿀때는 mutations으로 바꾸어야.

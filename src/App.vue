@@ -17,10 +17,11 @@ import Test2View from "@/views/Test2View.vue";
 <!--        <RouterLink to="/">Home</RouterLink>-->
 <!--        <RouterLink to="/about">About</RouterLink>-->
       </nav>
-
     </div>
   </header>
+
   <RouterView />
+
 </template>
 
 <style scoped>

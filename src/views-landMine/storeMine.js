@@ -57,42 +57,61 @@ export default createStore({
             mine:0
         },
         timer: 0,
+        halted:true, //게임이 중단된 상태.
         result:''
 
     },
     mutations:{ //  state안의 데이터들을 바꿀때는 mutations으로 바꾸어야.
-        //start_game(state, {row,cell,mine}){
-        start_game(state, {row,cell,mine}){
-            console.log('  start_game탐..>>>',  );
+          start_game(state, {row,cell,mine}){
+
             // state.data.row=row;
             // state.data.cell=cell;
             // state.data.mine=mine;
-            state.data={
-                row,
-                cell,
-                mine
-            };
-            state.tableData=plantMine(row,cell,mine);
-            state.timer=0;
+// ****************    이 state는 this.state를 가리킴. 밑과 같음.
+            state.data={ row, cell, mine };
+            //this.state.data={ row, cell, mine }; //
+            state.tableData = plantMine(row,cell,mine); // 이것과 밑은, state에 새로운 키:값을 생성하는 것.
+            state.timer = 0;
+            state.halted = false;
         },
-        open_cell(){
+        open_cell(state, {row,cell}){
+              console.log('  open_cell>>>', 'row is', row,'; cell is',cell  );
+            //this.state.tableData[row][cell]=CODE.OPENED
+            state.tableData[row][cell]=CODE.OPENED; //위도 가능.
 
         },
-        click_mine(){
+        click_mine(state, {row,cell}){
+            state.halted = true;
+            state.tableData[row][cell] = CODE.CLICKED_MINE
 
         },
-        flag_cell(){
-
+        flag_cell(state, {row,cell}){
+            if(state.tableData[row][cell] === CODE.MINE){
+                state.tableData[row][cell] = CODE.FLAG_MINE
+            }else{
+                state.tableData[row][cell] = CODE.FLAG
+            }
         },
-        question_cell(){
-
+        question_cell(state, {row,cell}){
+            if(state.tableData[row][cell] ===CODE.FLAG_MINE){
+                state.tableData[row][cell] = CODE.QUESTION_MINE
+            }else{
+                state.tableData[row][cell] = CODE.QUESTION
+            }
         },
-        normalize_cell(){
-
+        normalize_cell(state, {row,cell}){
+            if(state.tableData[row][cell] ===CODE.QUESTION_MINE){
+                state.tableData[row][cell] = CODE.MINE
+            }else{
+                state.tableData[row][cell] = CODE.NORMAL
+            }
         },
-        increment_timer(){
-
+        increment_timer(state){ //밑도 작동함.
+              state.timer +=1;
         }
+        // increment_timer(){
+        //     this.state.timer +=1;
+        // }
 
 
     },
