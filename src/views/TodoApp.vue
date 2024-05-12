@@ -44,10 +44,10 @@ export default {
        //      })
        //   }
        // }
-      this.todoList= this.todoList.filter(a=> a.id !== item.id);
+      this.todoList = this.todoList.filter(a=> a.id !== item.id);
     },
     completedItem(item){
-     //코드가 거의 완벽해 보입니다! 하지만 completedItem 메서드에서 map 대신에 forEach를 사용하는 것이 좀 더 적합합니다.
+     //코드가 거의 완벽해 보입니다! 하지만 completedItem 메서드에서 map 대신에, forEach를 사용하는 것이 좀 더 적합합니다.
       // map은, 새로운 배열을 반환하기 때문에, 해당되는 (1개의 ) 배열을 수정하는 데 사용되지 않습니다.
 
       // this.todoList= this.todoList.map(a=> {

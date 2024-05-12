@@ -28,6 +28,60 @@ npm run dev
 각 vue안에 코드 주석은 '집 JS 정리.txt' 정리됨.
 
 ------------
+
+4-2.반응속도
+<div id="screen" :class="state" @click="changeColor">{{message}}</div>
+위의 class가 바뀔때마다, 배경색이 바뀌는등 처리등, vue에서는 '바뀌는 것'을 '데이터'로 만들어서 사용해 바꾸어야.
+
+ data(){
+    return {
+      result:[],
+      state:'waiting',
+      message:'클릭해서 시작하세요'
+    }
+  },
+---
+ // const screen=document.querySelector('#screen');
+      // screen.addEventListener('click', (e)=>{
+      // console.log(' changeColor >>>',  );
+      // })
+ vue에서는 위 처럼, JS의  addEventListener로 만드는게 아니라, @click="onClickScreen"되는 것.
+--
+let startTime=0;
+let endTime=0;
+let timeOut=null;는 왜 data()로 관린 안 하나? <- 화면에 표시 안 되는 것은, 테이터로 관리x.
+
+--
+4-5강.
+>>>>>>>>>>>>>>> computed와 v-show, template설명  <<<<<<<<<<<<<<<<
+
+<div id="screen" :class="state" @click="onClickScreen">{{message}}</div>
+<div>result : {{result.reduce((a,b)=>a+b,0)/result.length}}</div>
+이렇게 계산은 텍스트넣는 곳에서 하지말고, computed를 사용하라.
+>>computed를 사용하는 이유? {{message}}만 바뀌어도, 밑의 계산이 다시 되므로, 성능상에 문제되므로.
+computed에 넣은 계산은 캐싱되어, 이전 계산된것을 그대로 가져와, 성능 ok됨.
+
+** <div v-show="result.length">와 <div v-if="result.length">의 차이
+<div v-show="result.length">는 display="none"이 되고, <div v-if="result.length">하면,
+아예 주석처리되어짐. <--해보고, elements에서 확인해보라.
+<div v-if="result.length">를 많이 사용한다고 함.
+
+별 역할이 없는 <div></div>는 <template></template>로 치환가능.
+그러면, <template>는 없는 태그로 된다.
+근데, 최상의 <template>바로 밑은 <template>를 사용 불가.
+-------------
+
+5-2강. 가위바위보
+ <div id="computer" :class="{state:true, hello:false}" :style="{backgroundImage:'', fontSize:'14px'}"></div>
+:class와 :style만 독특하게, {}객체형식으로도 넣을 수 있다.
+
+- created(){} 설명함. 07'20.
+-> data(){result:0}에 있는 값을 태그안에 {{result}}에 다 채워 넣는 상태. 근데, 그 태그가 아직 화면에 보이기 전.
+
+
+
+---
+7-3강
 // this.$set.tableData 7-3강, 08'19 <--이차원배열을 인덱스로 직접 바뀌면, vue가 인식 못함.
 
 
@@ -153,7 +207,8 @@ Vue.js에서는 데이터 바인딩을 통해 상태를 변경하고 이에 따�
 
 `:class="{ 'middle-line': item.completed }"`은 Vue.js에서 클래스를 동적으로 바인딩하는 방법입니다.
 
-이 구문은 `item.completed`가 `true`일 때만, 해당 요소에 `middle-line`이라는 클래스를 추가합니다. 즉, `item.completed`가 참이면 해당 요소에 `middle-line` 클래스가 적용되어 중간에 줄이 그어지게 됩니다.
+이 구문은 `item.completed`가 `true`일 때만, 해당 요소에 `middle-line`이라는 클래스를 추가합니다.
+즉, `item.completed`가 참이면 해당 요소에 `middle-line` 클래스가 적용되어 중간에 줄이 그어지게 됩니다.
 
 이것은 조건부 클래스 바인딩을 가능하게 하며, 상태에 따라 요소의 스타일을 동적으로 변경할 수 있습니다.
 

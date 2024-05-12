@@ -45,6 +45,16 @@ const router = createRouter({
       name: 'mine',
       component: () => import('../views-landMine/MineSweeper.vue')
     },
+    {
+      path: '/responseCheck',
+      name: 'responseCheck',
+      component: () => import('../views-responseCheck/ResponseCheck.vue')
+    },
+    {
+      path: '/rockScissorsPaper',
+      name: 'rockScissorsPaper',
+      component: () => import('../views-rockScissorsPaper/rockScissorsPaper.vue')
+    },
   ]
 })
 
