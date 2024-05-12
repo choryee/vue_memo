@@ -78,6 +78,18 @@ computed에 넣은 계산은 캐싱되어, 이전 계산된것을 그대로 가�
 - created(){} 설명함. 07'20.
 -> data(){result:0}에 있는 값을 태그안에 {{result}}에 다 채워 넣는 상태. 근데, 그 태그가 아직 화면에 보이기 전.
 
+----------------
+6-2. 로또.
+- props설명 있음.
+
+ components: { //LottoBall <-파스칼케이스로 쓰면, lotto-ball의 케밥케이스로 뷰가 자동으로 바꾸어줌..그래서,
+    'lotto-ball' : LottoBall
+  },
+-
+ components: {// 위와 같은 것.
+    LottoBall
+  },
+
 
 
 ---

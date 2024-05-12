@@ -55,6 +55,11 @@ const router = createRouter({
       name: 'rockScissorsPaper',
       component: () => import('../views-rockScissorsPaper/rockScissorsPaper.vue')
     },
+    {
+      path: '/LottoGenerator',
+      name: 'LottoGenerator',
+      component: () => import('../views-LottoGenerator/LottoGenerator.vue')
+    },
   ]
 })
 
