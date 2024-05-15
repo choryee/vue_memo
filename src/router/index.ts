@@ -60,6 +60,11 @@ const router = createRouter({
       name: 'LottoGenerator',
       component: () => import('../views-LottoGenerator/LottoGenerator.vue')
     },
+    {
+      path: '/wordRelay',
+      name: 'wordRelay',
+      component: () => import('../views-wordRelay/wordRelay.vue')
+    },
   ]
 })
 

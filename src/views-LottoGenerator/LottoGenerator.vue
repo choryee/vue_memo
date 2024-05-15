@@ -5,8 +5,8 @@
       <lotto-ball v-for="ball in winBalls" :key="ball" :number="ball"></lotto-ball>
     </div>
     <div>보너스</div>
-    <lotto-ball v-if="bonus"></lotto-ball>
-    <button v-if="redo">한번 더</button>
+    <lotto-ball v-if="bonus" :number="bonus"></lotto-ball>
+    <button v-if="redo" @click="onClickRedo">한번 더</button>
   </div>
 </template>
 
@@ -27,6 +27,7 @@ function getWinNumbers() {
   return [...winNumbers, bonusNumber];
 }
 
+const timeouts= [];
 export default {
   name: 'LottoGenerator',
   components: {
@@ -46,18 +47,29 @@ export default {
     },
 
   mounted() {
-      for(let i=0; i<this.winNumbers.length-1; i++){
-        setTimeout(()=>{
-          this.winBalls.push(this.winNumbers[i])
-        }, (i+1)*1000);
-      }
-
-      setTimeout(()=>{
-        this.bonus=this.winNumbers[6];
-        this.redo=true;
-      })
+      this.showBalls();
   },
   methods:{
+    onClickRedo(){
+      this.winNumbers=getWinNumbers();
+      this.winBalls=[];
+      this.bonus=null;
+      this.redo=false;
+     // this.showBalls(); 6-4강.  this.showBalls();을 watch로 재구성.
+    },
+
+     showBalls(){
+       for(let i=0; i<this.winNumbers.length-1; i++){
+         timeouts[i] = setTimeout(()=>{
+           this.winBalls.push(this.winNumbers[i])
+         }, (i+1)*1000);
+       }
+
+      timeouts[6] = setTimeout(()=>{
+         this.bonus=this.winNumbers[6];
+         this.redo=true;
+       },7000)
+     }
     // randomNumer(){
     //   for(let i=0; i<this.winBalls.length-1; i++){
     //     setTimeout(()=>{
@@ -66,6 +78,18 @@ export default {
     //   }
     //
     // },
+  },
+  beforeDestroy() { //setTimeout메모리 누수 방지 위해.
+    timeouts.forEach(t=>{
+      clearTimeout(t);
+    })
+  },
+  watch:{
+    winBalls(val, oldVal){ // this.winBalls=[];가 바뀌는 것을 감시.
+      if(val.length === 0){
+        this.showBalls(); // winBalls의 배열이 빌때,  this.showBalls();를 실행하라.
+      }
+    }
   }
 }
 </script>
