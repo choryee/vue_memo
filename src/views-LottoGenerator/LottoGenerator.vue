@@ -21,8 +21,11 @@ function getWinNumbers() {
   while (candidate.length > 0) {
     shuffle.push(candidate.splice(Math.floor(Math.random() * candidate.length), 1)[0]);
   }
-  const bonusNumber = shuffle[shuffle.length - 1];
-  const winNumbers = shuffle.slice(0, 6).sort((p, c) => p - c);
+  console.log('  shuffle>>>', shuffle ); //숫자 45개.
+
+  const bonusNumber = shuffle[shuffle.length - 1]; // 숫자 45개의 마지막 숫자.
+  console.log('  bonusNumber>>>',  bonusNumber); //숫자 1개.
+  const winNumbers = shuffle.slice(0, 6).sort((a, b) => a - b);
 
   return [...winNumbers, bonusNumber];
 }
@@ -84,10 +87,15 @@ export default {
       clearTimeout(t);
     })
   },
-  watch:{
+  watch:{ // winBalls() 에서 winBalls는 위에서 정의된 변수을 넣어야.
     winBalls(val, oldVal){ // this.winBalls=[];가 바뀌는 것을 감시.
       if(val.length === 0){
         this.showBalls(); // winBalls의 배열이 빌때,  this.showBalls();를 실행하라.
+      }
+    },
+    bonus(val, oldVal){ // <-- bonus변수 감시.
+      if( !val){
+
       }
     }
   }

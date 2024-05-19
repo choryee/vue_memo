@@ -65,6 +65,11 @@ const router = createRouter({
       name: 'wordRelay',
       component: () => import('../views-wordRelay/wordRelay.vue')
     },
+    {
+      path: '/memo',
+      name: 'memo',
+      component: () => import('../views-memovue3/memo.vue')
+    },
   ]
 })
 

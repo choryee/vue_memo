@@ -14,5 +14,10 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
-  }
+  },
+  server: {
+    proxy: {
+      '/api': 'http://localhost:3000', // 백엔드 서버 주소로 프록시 설정
+    },
+  },
 })
