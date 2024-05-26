@@ -7,7 +7,8 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
+frontend_memo/node_modules
+backend_memo/node_modules
 .DS_Store
 dist
 dist-ssr
