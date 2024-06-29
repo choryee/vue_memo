@@ -17,6 +17,18 @@ jQuery나 JS는 데이터가 변경된 것도 코드로 만들어야 하고, 그
 위는 {{result}}에서도 사용가능.
 => :은 v-bind의 축약형이다. :class="", :style="", :number="winBalls" 밑에 있음.
 
+4-5강.
+>>>>>>>>>>>>>>> computed와 v-show, template설명  <<<<<<<<<<<<<<<< 검색하라
+
+5-2강. 가위바위보
+ <div id="computer" :class="{state:true, hello:false}" :style="{backgroundImage:'', fontSize:'14px'}"></div>
+:class와 :style만 독특하게, {}객체형식으로도 넣을 수 있다.
+
+<span :class="{ 'middle-line': item.completed }">{{ item.todo }}</span>
+-> item.completed이게 참이면, .class='middle-line'가 생겼다 안 생겼다 동적으로 클래스-바인딩 됨.
+
+<span :class="{ 'middle-line': item.completed }">{{ item.todo }}</span>
+
 
 PascalCase : WordRelay
 camelCase : wordRelay

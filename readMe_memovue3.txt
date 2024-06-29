@@ -1,4 +1,4 @@
-vue3+express memo 강의 240526
+vue3 + express memo 강의 240526
 - vue3, 서버는 express사용함.
 
 집에서 intellij안되서, vsc로 작업함.
@@ -50,6 +50,6 @@ http://localhost:3000이렇게 서버(서버포트는 3000임)로 요청하면, 
 outputDir : path.resolve(__dirname, "../backend_memo/dist"), // npm run build로 빌드한 것의 dist위치를 변경하는 것.
 server: {
     proxy: {
-      '/api': 'http://localhost:3000', // 백엔드 서버 주소로 프록시 설정
+      '/api': 'http://localhost:3000', // 백엔드 서버 주소로 프록시 설정. 여긴 서버 주소를 쓰는 것.
     },
   },

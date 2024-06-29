@@ -46,6 +46,9 @@ import axios from "axios";
           console.log(' id >>>', id  );
           //const content=prompt('enter content plz', state.data[id])
           const content=prompt('enter content plz', state.data.find(d=>d.id === id).content)
+         if(content == null){
+           return;
+         }
           console.log('  content>>>',  content);
           axios.put('/api/memos/'+id, {content})
               .then(res=>{
